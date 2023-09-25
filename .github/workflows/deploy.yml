@@ -1,19 +1,19 @@
-#!yaml
-name: build
+name: Build
+
 on:
   push:
     branches:
-      - deploy
+      - build
   workflow_dispatch:
     branches:
-      - deploy
+      - build
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -32,11 +32,11 @@ jobs:
         run: npm run build
 
       # https://github.com/s0/git-publish-subdir-action
-      - name: Push to build branch
+      - name: Push to deploy branch
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          BRANCH: build
+          BRANCH: deploy
           FOLDER: source/wp-content/themes/mytheme
           TARGET_DIR: mytheme
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
