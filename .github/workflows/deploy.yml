@@ -40,3 +40,6 @@ jobs:
           FOLDER: source/wp-content/themes/mytheme
           TARGET_DIR: mytheme
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: write
