@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		/* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+		/* Language and Environment */
+		"target": "ESNext",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+		/* Modules */
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+
+		/* JavaScript Support */
+		"allowJs": true,
+
+		/* Emit */
+		"noEmit": true,
+
+		/* Interop Constraints */
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+
+		/* Completeness */
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*"]
+}

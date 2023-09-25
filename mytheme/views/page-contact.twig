@@ -1,0 +1,163 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main>
+		{{ include(
+			'partials/page-title.twig',
+			{
+				title: post.title
+			}
+		) }}
+
+
+		<div class="container max-w-xl mt-16 prose">
+			<div x-data="formFields">
+				<div x-show="fieldMode==='input'">
+					<p>Input</p>
+					<form>
+						<div data-field="select">
+							<label class="block" for="select" data-field-label>Select</label>
+							<select name="select" id="select" data-field-control>
+								<option value="">Choose it</option>
+								<option value="Select1">"Select1"</option>
+								<option value="Select2">"Select2"</option>
+								<option value="Select3">"Select3"</option>
+							</select>
+							<div class="hidden" data-field-error="select"></div>
+						</div>
+
+						<fieldset data-field="checkbox">
+							<legend data-field-label>Checkbox</legend>
+							<ul>
+								<li>
+									<input type="checkbox" name="checkbox[0]" value="checkbox1" id="checkbox1" data-field-control>
+									<label for="checkbox1">
+										Checkbox1
+									</label>
+								</li>
+								<li>
+									<input type="checkbox" name="checkbox[1]" value="checkbox2" id="checkbox2" data-field-control>
+									<label for="checkbox2">
+										Checkbox2
+									</label>
+								</li>
+								<li>
+									<input type="checkbox" name="checkbox[2]" value="checkbox3" id="checkbox3" data-field-control>
+									<label for="checkbox3">
+										Checkbox3
+									</label>
+								</li>
+							</ul>
+							<div class="hidden" data-field-error="checkbox"></div>
+						</fieldset>
+
+						<fieldset data-field="radio">
+							<legend data-field-label>Radio</legend>
+							<ul>
+								<li>
+									<input type="radio" name="radio" value="radio1" id="radio1" data-field-control>
+									<label for="radio1">
+										Radio1
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="radio" value="radio2" id="radio2" data-field-control>
+									<label for="radio2">
+										Radio2
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="radio" value="radio3" id="radio3" data-field-control>
+									<label for="radio3">
+										Radio3
+									</label>
+								</li>
+							</ul>
+							<div class="hidden" data-field-error="radio"></div>
+						</fieldset>
+
+						<div data-field="name">
+							<label class="block" for="name" data-field-label>Name</label>
+							<input type="text" name="name" id="name" data-field-control>
+							<div class="hidden" data-field-error="name"></div>
+						</div>
+
+						<div data-field="email">
+							<label class="block" for="email" data-field-label>Email</label>
+							<input type="email" name="email" id="email" data-field-control>
+							<div class="hidden" data-field-error="email"></div>
+						</div>
+
+						<div data-field="email_re">
+							<label class="block" for="email_re" data-field-label>RE:Email</label>
+							<input type="email" name="email_re" id="email_re" data-field-control>
+							<div class="hidden" data-field-error="email_re"></div>
+						</div>
+
+						<div data-field="tel">
+							<label class="block" for="tel" data-field-label>Tel</label>
+							<input type="tel" name="tel" id="tel" data-field-control>
+							<div class="hidden" data-field-error="tel"></div>
+						</div>
+
+						<div data-field="message">
+							<label class="block" for="message" data-field-label>Message</label>
+							<textarea name="message" id="message" cols="30" rows="10" data-field-control></textarea>
+							<div class="hidden" data-field-error="message"></div>
+						</div>
+
+						<div>
+							<label for="agreement">
+								<input type="checkbox" id="agreement" @change="agreement = $event.target.checked">
+								Agree?
+							</label>
+						</div>
+
+						<button
+							type="button"
+							class="disabled:opacity-50"
+							@click="onConfirm"
+							:disabled="!agreement"
+						>
+							Submit
+						</button>
+					</form>
+				</div>
+
+				{# Optional #}
+				<div x-show="fieldMode==='confirm'">
+					<p>Confirm</p>
+					<template x-for="item in formattedValues">
+						<div>
+							<p x-text="item.label"></p>
+							<p x-text="item.value" class="whitespace-pre-line"></p>
+						</div>
+					</template>
+
+					<div class="grid grid-cols-2 gap-8">
+						<button
+							type="button"
+							class="px-14 pt-4 bg-black text-white"
+							@click="fieldMode = 'input'"
+						>
+							Back
+						</button>
+						<button
+							type="button" class="px-14 pt-4 bg-black text-white"
+							@click="onSubmit"
+						>
+							Send
+						</button>
+					</div>
+				</div>
+
+				<div x-show="fieldMode==='complete'">
+					<p>Complete</p>
+				</div>
+				<div x-show="fieldMode==='error'">
+					<p>Error</p>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

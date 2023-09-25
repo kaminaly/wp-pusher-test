@@ -1,0 +1,15 @@
+{
+	"require": {
+		"phpmailer/phpmailer": "*",
+		"timber/timber": "*",
+		"league/oauth2-google": "*"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		},
+		"platform": {
+			"php": "^8"
+		}
+	}
+}
