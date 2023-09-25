@@ -1,0 +1,52 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+	<head>
+		<meta charset="{{ site.charset }}">
+		<meta name="viewport" content="width=device-width">
+		<meta name="format-detection" content="telephone=no">
+
+		{{ function('wp_head') }}
+	</head>
+
+	<body class="{{ body_class }} text-slate-500 bg-white">
+		{{ function('wp_body_open') }}
+
+		<header class="fixed top-0 inset-x-0 z-40 text-sm font-bold bg-white border-b border-slate-300">
+			<div class="container flex gap-x-6 justify-between">
+				<a class="py-3" href="{{ site.url }}">{{ site.name }}</a>
+
+				<div class="contents" x-data="{ open: false }">
+					<button class="py-3" type="button" @click="open = true">メニュー</button>
+
+					<template x-teleport="#js-overlay-container">
+						{{ include('partials/site-menu.twig') }}
+					</template>
+				</div>
+			</div>
+		</header>
+
+		{% block content %}{% endblock %}
+
+		<footer class="sticky top-full mt-20 py-2 text-sm bg-slate-100">
+			<nav>
+				<p class="container flex gap-x-6">
+					{% for item in [
+						['ホーム', site.url],
+						[about_post.title, about_post.link],
+						[
+							function('get_post_type_object', 'mytheme_news').labels.name,
+							function('get_post_type_archive_link', 'mytheme_news')
+						]
+					] %}
+					<a class="py-3" href="{{ item[1] }}">{{ item[0] }}</a>
+					{% endfor %}
+				</p>
+			</nav>
+		</footer>
+
+		{# https://atfzl.com/don-t-attach-tooltips-to-document-body #}
+		<div id="js-overlay-container"></div>
+
+		{{ function('wp_footer') }}
+	</body>
+</html>

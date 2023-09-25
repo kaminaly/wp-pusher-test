@@ -1,0 +1,29 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main>
+		{{
+			include(
+				'partials/page-title.twig',
+				{
+					title: post.title
+				}
+			)
+		}}
+
+		{{
+			function(
+				'get_the_post_thumbnail',
+				null,
+				'full',
+				{
+					class: 'w-full min-h-[14rem] object-cover aspect-[3/1]'
+				}
+			)
+		}}
+
+		<div class="container max-w-xl mt-16 prose">
+			{{ post.content }}
+		</div>
+	</main>
+{% endblock %}

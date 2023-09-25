@@ -1,0 +1,13 @@
+build/
+node_modules/
+vendor/
+npm-debug.log*
+
+/env/wordpress.*.xml.edited
+/.env
+/.wp-env.override.json
+
+/source/wp-content/*
+!/source/wp-content/mu-plugins
+!/source/wp-content/themes
+docker-compose.mailhog.yml

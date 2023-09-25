@@ -1,0 +1,17 @@
+{
+	"phpVersion": "8.1",
+	"plugins": [
+		"./source/wp-content/plugins/advanced-custom-fields-pro",
+		"./source/wp-content/plugins/query-monitor",
+		"./source/wp-content/plugins/wordpress-importer",
+		"./source/wp-content/plugins/wordpress-seo",
+		"./source/wp-content/plugins/wp-multibyte-patch"
+	],
+	"themes": ["./source/wp-content/themes/mytheme"],
+	"mappings": {
+		"env": "./env",
+		"wp-content/languages": "./source/wp-content/languages",
+		"wp-content/mu-plugins": "./source/wp-content/mu-plugins",
+		"wp-cli.local.yml": "./wp-cli.local.yml"
+	}
+}

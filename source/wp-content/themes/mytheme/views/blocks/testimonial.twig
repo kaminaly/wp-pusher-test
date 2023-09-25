@@ -1,0 +1,27 @@
+{% set text = fields.testimonial ?: 'Your testimonial here...' %}
+{% set author = fields.author ?: 'Author name' %}
+{% set author_role = fields.role ?: 'Author role' %}
+{% set image = fields.image %}
+
+<div class="acf-block-testimonial bg-gray-100">
+	{{
+		function(
+			'wp_get_attachment_image',
+			image,
+			'full',
+			false,
+			{
+				class: 'aspect-video'
+			}
+		)
+	}}
+	<figure class="p-6">
+		<blockquote class="font-serif text-3xl">
+			<p>{{ text|e('html') }}</p>
+		</blockquote>
+		<figcaption class="mt-6 text-right opacity-90">
+			<span class="block font-bold">{{ author|e('html') }}</span>
+			<span class="block text-sm">{{ author_role|e('html') }}</span>
+		</figcaption>
+	</figure>
+</div>

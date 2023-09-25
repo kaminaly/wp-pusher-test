@@ -1,0 +1,48 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main>
+		{{
+			include(
+				"partials/page-title.twig",
+				{
+					title: title
+				}
+			)
+		}}
+
+		<div class="container max-w-4xl">
+			<ol class="divide-y">
+				{% for post in posts %}
+					<li>
+						<a
+							class="flex justify-between items-center gap-x-6 py-3"
+							href="{{ post.link }}"
+						>
+							{{ post.title }}
+							<time
+								class="text-sm"
+								datetime="{{ post.date('Y-m-d H:i:s') }}"
+							>
+								{{ post.date }}
+							</time>
+						</a>
+					</li>
+				{% endfor %}
+			</ol>
+		</div>
+	</main>
+
+	{{
+		include(
+			'partials/base-pagination.twig',
+			{
+				pagination: posts.pagination({
+					show_all: false,
+					mid_size: 3,
+					end_size: 2
+				})
+			}
+		)
+	}}
+{% endblock %}

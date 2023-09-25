@@ -1,0 +1,16 @@
+{
+	"DEBUG": false,
+	"lang": "ja",
+	"reply": {
+		"email": "reply@example.com",
+		"name": {
+			"user": "お問い合わせありがとうございました",
+			"admin": "お問い合わせありがありました"
+		}
+	},
+	"admins": ["admin@example.com"],
+	"subjects": {
+		"user": "お問い合わせ頂きありがとうございます",
+		"admin": "お問い合わせがありました"
+	}
+}

@@ -1,0 +1,79 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main>
+		{{
+			include(
+				"partials/page-title.twig",
+				{
+					title: site.name,
+					description: site.description
+				}
+			)
+		}}
+
+		<div x-data="example"></div>
+
+		<img
+			class="w-full min-h-[14rem] object-cover aspect-[3/1]"
+			src="https://source.unsplash.com/random"
+			alt=""
+			decoding="async"
+		/>
+
+		<section class="container max-w-4xl mt-16">
+			<h2 class="font-bold">{{ about_post.title }}</h2>
+
+			<div class="mt-8 space-y-6 text-xl">
+				{{ about_post.preview.read_more(false).strip(false) }}
+			</div>
+
+			<div class="flex justify-center mt-8">
+				{{
+					include(
+						'partials/base-button.twig',
+						{
+							content: 'さらに詳しく',
+							attrs: 'href="%s"'|format(about_post.link)
+						}
+					)
+				}}
+			</div>
+		</section>
+
+		<section class="container max-w-4xl mt-16">
+			<h2 class="font-bold">
+				{{ function('get_post_type_object', 'mytheme_news').labels.name }}
+			</h2>
+
+			<ol class="mt-8 divide-y">
+				{% for post in get_posts({ post_type: 'mytheme_news' }) %}
+				<li>
+					<a
+						class="flex justify-between items-center gap-x-6 py-3"
+						href="{{ post.link }}"
+					>
+						{{ post.title }}
+						<time class="text-sm" datetime="{{ post.date('Y-m-d H:i:s') }}">
+							{{ post.date }}
+						</time>
+					</a>
+				</li>
+				{% endfor %}
+			</ol>
+
+			<div class="flex justify-center mt-8">
+				{{
+					include(
+						'partials/base-button.twig',
+						{
+							content: 'さらに表示',
+							attrs: 'href="%s"'
+								|format(function('get_post_type_archive_link', 'mytheme_news'))
+						}
+					)
+				}}
+			</div>
+		</section>
+	</main>
+{% endblock %}

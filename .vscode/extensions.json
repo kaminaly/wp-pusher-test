@@ -1,0 +1,11 @@
+{
+	"recommendations": [
+		"adrianwilczynski.alpine-js-intellisense",
+		"bajdzis.vscode-twig-pack",
+		"bradlc.vscode-tailwindcss",
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode",
+		"tungvn.wordpress-snippet",
+		"xdebug.php-debug"
+	]
+}
