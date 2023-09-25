@@ -23,7 +23,7 @@ jobs:
       - name: Install php dependencies
         uses: php-actions/composer@v6
         with:
-          php_version: 7.4
+          # php_version: 7.4
           working_dir: "source/wp-content/themes/mytheme"
 
       - name: Install node dependencies
